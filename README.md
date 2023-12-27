@@ -2,24 +2,28 @@
 
 Common files and configs for all CinePik microservices.
 
+Useful resources:
+
+- [Managed nginx Ingress with the application routing add-on](https://learn.microsoft.com/en-us/azure/aks/app-routing?tabs=default%2Cdeploy-app-default)
+
 ## Kubernetes deployment
+
+## Setup
 
 ### Apply changes
 
-We can create the ingress controller.
+Create the ingress controller.
 
 ```bash
-kubectl apply -f k8s/cinepik-catalog.yml
+kubectl apply -f k8s/ingress.yml
 ```
 
 ### Other useful commands
 
 ```bash
-kubectl get pods
-kubectl delete deployment cinepik-keycloak-deployment
-kubectl delete configmap <configmap name>
-kubectl rollout restart deployment/cinepik-keycloak-deployment
-kubectl logs <pod-id>
-kubectl describe secret <secret-name>
-kubectl get secret <secret-name>
+kubectl get ingress
+kubectl get pods -o wide
+kubectl get service
+kubectl describe ingress cinepik-ingress
+kubectl delete ingress cinepik-ingress
 ```
