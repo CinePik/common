@@ -40,3 +40,10 @@ spec:
                 name: cinepik-watchlist
                 port:
                   number: 3002
+          - path: /recommendations(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: cinepik-recommendation-engine
+                port:
+                  number: 3003
