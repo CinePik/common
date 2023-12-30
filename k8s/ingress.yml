@@ -33,3 +33,10 @@ spec:
                 name: cinepik-keycloak
                 port:
                   number: 8080
+          - path: /reviews(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: cinepik-reviews
+                port:
+                  number: 3002
