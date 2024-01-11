@@ -9,6 +9,15 @@ Useful resources:
 - Deploy Grafana in k8s: [How To Setup Grafana On Kubernetes](https://devopscube.com/setup-grafana-kubernetes/)
 - Create and use a volume in AKS: [Create and use a volume with Azure Disks in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/azure-csi-disk-storage-provision)
 
+## Docker
+### Docker Compose
+    
+```bash
+# Logging
+docker-compose -f docker-compose-logging.yml up -d --build
+docker-compose -f docker-compose-logging.yml down
+```
+
 ## Kubernetes deployment
 
 ### Monitoring
