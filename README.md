@@ -6,6 +6,15 @@ Useful resources:
 
 - [Managed nginx Ingress with the application routing add-on](https://learn.microsoft.com/en-us/azure/aks/app-routing?tabs=default%2Cdeploy-app-default)
 
+## Docker
+### Docker Compose
+    
+```bash
+# Logging
+docker-compose -f docker-compose-logging.yml up -d --build
+docker-compose -f docker-compose-logging.yml down
+```
+
 ## Kubernetes deployment
 
 ## Setup
