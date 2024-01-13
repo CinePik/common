@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prom_data:/prometheus
+    ports:
+      - ${PROMETHEUS_PORT:-9090}:${PROMETHEUS_PORT:-9090}
+    networks:
+      - cinepik-network
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - ${GRAFANA_PORT:-3000}:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+    networks:
+      - cinepik-network
+
+networks:
+  cinepik-network:
+    name: cinepik-network
+    external: true
+
+volumes:
+  prom_data:
