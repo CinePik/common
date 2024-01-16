@@ -1,0 +1,15 @@
+# ---------------------
+# NOTE: This config file is used only when running Prometheus inside of a local environment.
+#       In such, only scraping of actual application container is needed.
+#       If running Prometheus in a cluster, please refer to the `prometheus-configmap.yml`.
+# ---------------------
+
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: 'cinepik-catalog-app'
+    static_configs:
+      - targets: ['host.docker.internal:3001']
+    # TODO: add other services for metrics gathering
