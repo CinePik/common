@@ -1,0 +1,15 @@
+# This PVC requests a 5Gi storage volume with ReadWriteOnce access mode, 
+# which means the volume can be mounted as read-write by a single node.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-pvc
+  namespace: monitoring
+spec:
+  accessModes:
+    - ReadWriteOnce
+  # dynamically provision from the existing azure storage class
+  storageClassName: managed-csi
+  resources:
+    requests:
+      storage: 5Gi
