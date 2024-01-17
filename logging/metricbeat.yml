@@ -7,7 +7,6 @@ metricbeat.modules:
     xpack.enabled: true
     period: 10s
     hosts: ${ELASTIC_HOSTS}
-    ssl.key: "certs/es01/es01.key"
     username: ${ELASTIC_USER}
     password: ${ELASTIC_PASSWORD}
     ssl.enabled: true
@@ -48,3 +47,4 @@ output.elasticsearch:
   hosts: ${ELASTIC_HOSTS}
   username: ${ELASTIC_USER}
   password: ${ELASTIC_PASSWORD}
+  ssl.enabled: false
