@@ -28,7 +28,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "curl -s http://localhost:9200 | grep -q 'missing authentication credentials'"
+          "curl -s http://localhost:9200 | grep -q 'es01'"
         ]
       interval: 10s
       timeout: 10s
@@ -96,6 +96,7 @@ services:
 
   # Filebeat - collect log files from ingest_data/*.log and docker containers
   filebeat01:
+    command: filebeat -e -strict.perms=false
     depends_on:
       es01:
         condition: service_healthy
