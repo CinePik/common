@@ -47,3 +47,17 @@ spec:
                 name: cinepik-recommendation-engine
                 port:
                   number: 3003
+          # - path: /kibana(/|$)(.*)
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: cinepik-recommendation-engine
+          #       port:
+          #         number: 5601
+          # - path: /grafana(/|$)(.*)
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: grafana-pvc
+          #       port:
+          #         number: 3100
