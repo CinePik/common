@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kb-deployment
+  namespace: monitoring
+  labels:
+    app: kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+      - name: kibana
+        image: kibana:7.17.5
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 500m
+            memory: "1048Mi"
+          requests:
+            cpu: 200m
+            memory: "524Mi"
+        env:
+          - name: ELASTICSEARCH_URL
+            value: http://elasticsearch.monitoring.svc.cluster.local:9200
+          - name: SERVER_BASEPATH
+            value: "/kibana"
+          # - name: SERVER_REWRITEBASEPATH
+          #   value: "true"
+        ports:
+        - containerPort: 5601
+---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: kb-svc
+#   namespace: monitoring
+#   labels:
+#     app: kibana
+# spec:
+#   ports:
+#   - port: 80
+#     targetPort: 5601
+#   selector:
+#     app: kibana
+#   type: LoadBalancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana-service
+  namespace: monitoring
+  labels:
+    app: kibana
+spec:
+  selector:
+    app: kibana
+  ports:
+    - protocol: TCP
+      port: 5601
+      targetPort: 5601
