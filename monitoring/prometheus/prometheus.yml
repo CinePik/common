@@ -9,7 +9,18 @@ global:
   evaluation_interval: 5s
 
 scrape_configs:
-  - job_name: 'cinepik-catalog-app'
+  - job_name: 'cinepik-catalog'
     static_configs:
       - targets: ['host.docker.internal:3001']
-    # TODO: add other services for metrics gathering
+  - job_name: 'cinepik-watchlist'
+    static_configs:
+      - targets: ['host.docker.internal:3002']
+  - job_name: 'cinepik-recommendation-engine'
+    static_configs:
+      - targets: ['host.docker.internal:3003']
+  - job_name: 'cinepik-auth'
+    static_configs:
+      - targets: ['host.docker.internal:3000']
+  - job_name: 'cinepik-keycloak'
+    static_configs:
+      - targets: ['host.docker.internal:8080']
