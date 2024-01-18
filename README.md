@@ -9,43 +9,62 @@ Useful resources:
 - Deploy Grafana in k8s: [How To Setup Grafana On Kubernetes](https://devopscube.com/setup-grafana-kubernetes/)
 - Create and use a volume in AKS: [Create and use a volume with Azure Disks in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/azure-csi-disk-storage-provision)
 
+## Docker
+
+### Docker Compose
+
+```bash
+# Logging
+docker-compose -f docker-compose.logging.yml up -d --build
+docker-compose -f docker-compose.logging.yml down
+```
+
 ## Kubernetes deployment
 
 ### Monitoring
 
 Create namespace
+
 ```bash
 kubectl apply -f /monitoring/k8s/namespace.yml
 ```
 
 #### Prometheus
+
 Create cluster role for Prometheus
+
 ```bash
 kubectl apply -f /monitoring/k8s/prometheus-role.yml
 ```
 
 Create config map for Prometheus
+
 ```bash
 kubectl apply -f /monitoring/k8s/prometheus-configmap.yml
 ```
 
 Create persistent volume claim for Prometheus
+
 ```bash
 kubectl apply -f /monitoring/k8s/prometheus-pvc.yml
 ```
 
 Create deployment and service for Prometheus
+
 ```bash
 kubectl apply -f /monitoring/k8s/prometheus-deployment.yml
 ```
 
 #### Grafana
+
  Create config map for Grafana
+
 ```bash
 kubectl apply -f /monitoring/k8s/grafana-configmap.yml
 ```
 
-Create secret for Grafana 
+Create secret for Grafana
+
 ```bash
 kubectl create secret generic grafana-secret --namespace monitoring \
   --from-literal=admin-user='admin' \
@@ -53,11 +72,13 @@ kubectl create secret generic grafana-secret --namespace monitoring \
 ```
 
 Create persistent volume claim for Grafana
+
 ```bash
 kubectl apply -f /monitoring/k8s/grafana-pvc.yml
 ```
 
 Create deployment and service for Grafana
+
 ```bash
 kubectl apply -f /monitoring/k8s/grafana-deployment.yml
 ```
