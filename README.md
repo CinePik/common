@@ -95,6 +95,10 @@ kubectl apply -f k8s/ingress.yml
 
 Create monitoring ingress controller. Make sure to create the monitoring namespace first.
 
+```bash
+kubectl create namespace monitoring
+```
+
 Since each app expects traffic to be on `/` some app redirects cannot be handled correctly by ingress, i.e. all prometheus traffic needs to be on `/prometheus/something`.
 The best solution would be to solve this in the ingress itself, but not all solutions fix everything. Currently using the rewrite-target annotation works for Prometheus, but not for Grafana, so the current fix for Grafana is to use an environment variable `GF_SERVER_ROOT_URL` to set the base path.
 
