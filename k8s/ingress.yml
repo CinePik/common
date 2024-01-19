@@ -45,3 +45,10 @@ spec:
                 name: cinepik-recommendation-engine
                 port:
                   number: 3003
+          - path: /kibana(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: kibana-service
+                port:
+                  number: 5601
